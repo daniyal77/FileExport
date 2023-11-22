@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $exporter = new \App\Exporter\TextExporter(['key' => "title", 'value' => "content"]);
-    $exporter->export();
+    return view('welcome');
 });
+
+Route::post('/', 'App\Http\Controllers\FileImportController@index')->name('file.import.store');

@@ -4,29 +4,10 @@ namespace App\Abstracts;
 
 abstract class Exporter
 {
-    protected $format;
-    protected $data;
 
-    public function __construct ($data)
-    {
-        $this->data = $data;
-        if (!$this->is_valid()) {
-            echo "Invalid Data!";
-            exit();
-        }
-    }
+    abstract function is_valid ();
 
-    public function is_valid (): bool
-    {
-        foreach ($this->data as $field) {
-            if (empty($field)) {
-                return false;
-            }
-        }
-        return true;
-    }
+    abstract function render ($path);
 
-    abstract function render ();
-
-    abstract function export ();
+    abstract function parser ($content);
 }
